@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИИ Сонник</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Анимированный фон ночного неба -->
+    <div class="night-sky">
+        <div class="stars" id="starsContainer"></div>
+        <div class="moon">
+            <div class="moon-crater"></div>
+            <div class="moon-crater"></div>
+            <div class="moon-crater"></div>
+        </div>
+        
+        <!-- Красивый стоящий барашек -->
+        <div class="sheep-container">
+            <div class="sheep">
+                <div class="sheep-body">
+                    <div class="sheep-head">
+                        <div class="sheep-ear left"></div>
+                        <div class="sheep-ear right"></div>
+                        <div class="sheep-eye"></div>
+                        <div class="sheep-nose"></div>
+                    </div>
+                    <div class="sheep-wool sheep-wool-1"></div>
+                    <div class="sheep-wool sheep-wool-2"></div>
+                    <div class="sheep-wool sheep-wool-3"></div>
+                    <div class="sheep-wool sheep-wool-4"></div>
+                    <div class="sheep-wool sheep-wool-5"></div>
+                    <div class="sheep-wool sheep-wool-6"></div>
+                    <div class="sheep-tail"></div>
+                    <div class="sheep-leg front-left"></div>
+                    <div class="sheep-leg front-right"></div>
+                    <div class="sheep-leg back-left"></div>
+                    <div class="sheep-leg back-right"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Облака -->
+        <div class="clouds">
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+        </div>
+        
+        <!-- Падающие звезды -->
+        <div class="shooting-stars">
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+        </div>
+    </div>
+    
+    <!-- Затемнение для контента -->
+    <div class="content-overlay"></div>
+    
+    <div class="container">
+        <!-- Боковое меню (история чатов) - СКРЫТО ПО УМОЛЧАНИЮ -->
+        <aside class="sidebar">
+            <!-- Хедер сайдбара с кнопкой закрытия -->
+            <div class="sidebar-header">
+                <div class="logo">AI Сонник</div>
+                <button class="close-sidebar" id="closeSidebar">×</button>
+            </div>
+            
+            <!-- Информация о гостевом режиме -->
+           <div class="guest-info" id="guestInfo">
+    <div class="user-info-guest">
+        <div class="user-avatar-guest">G</div>
+        <span class="user-name-guest">Гость</span>
+    </div>
+    <button class="guest-login-btn" onclick="showAuthModal()">
+        <span class="guest-login-icon">🔑</span>
+        Войти в аккаунт
+    </button>
+    <p class="guest-description">Авторизуйтесь, чтобы быть в курсе о своих снах</p>
+</div>
+
+            <!-- Контент для авторизованных пользователей (скрыт в гостевом режиме) -->
+            <div class="auth-content" id="authContent">
+                <button class="menu-new-chat" id="menuNewChat">Новый чат</button>
+            </div>
+            
+            <nav class="chat-list" id="chatsList" role="list">
+                <!-- Чаты будут загружаться динамически -->
+            </nav>
+
+            <!-- Футер пользователя (только для авторизованных) -->
+            <div class="menu-footer" id="menuFooter">
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-avatar">U</div>
+                        <span class="user-name" id="userName">User</span>
+                    </div>
+                    <div class="user-menu-container">
+                        <button class="user-menu-btn">⋮</button>
+                        <div class="user-menu-dropdown">
+                            <button class="user-menu-item" onclick="showProfile()">
+                                <span class="menu-icon">👤</span>
+                                Профиль
+                            </button>
+                            <button class="user-menu-item" onclick="logout()">
+                                <span class="menu-icon">🚪</span>
+                                Выйти
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content" role="main">
+            <!-- Хедер с кнопкой меню -->
+            <div class="header">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </div>
+            
+            <div class="moon"></div>
+            
+            <!-- Приветственный экран -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="text-container">
+                    <div class="subtitle">ЗДРАВСТВУЙТЕ, РАССКАЖИТЕ НАМ О СВОЕМ СНЕ</div>
+                    <h1 class="title">Толкование сновидений с помощью искусственного интеллекта</h1>
+                    <p class="description">
+                        Позвольте искусственному интеллекту интерпретировать значение ваших снов, чтобы проникнуть в ваше подсознание,
+                    </p>
+                    
+                    <!-- Быстрые действия -->
+                    <div class="quick-actions">
+                        <button class="quick-btn">
+                            💭 Новый чат
+                        </button>
+                        <button class="quick-btn">
+                            🏃‍♂️ Мне снилась погоня
+                        </button>
+                        <button class="quick-btn">
+                            🌊 Мне снилось море
+                        </button>
+                        <button class="quick-btn">
+                            🦷 Мне снились зубы
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контейнер сообщений (скрыт по умолчанию) -->
+            <div class="messages-container elegant" id="messagesContainer" style="display: none;">
+                <div class="messages-list" id="messagesList">
+                    <!-- Сообщения будут здесь -->
+                </div>
+            </div>
+
+            <!-- Плавающий инпут -->
+            <div class="input-container" id="inputContainer">
+                <div class="input-wrapper">
+                    <div class="voice-actions">
+                        <button class="voice-btn" id="voiceBtn" title="Голосовой ввод">🎤</button>
+                        <button class="voice-btn" id="ttsBtn" title="Озвучить ответ">🔊</button>
+                    </div>
+                    
+                    <div class="text-input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="Напишите здесь о своем сне..." 
+                            rows="1"
+                        ></textarea>
+                        <div class="input-actions">
+                            <button class="send-btn" id="sendBtn" title="Отправить">
+                                <span class="send-icon">➤</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Затемнение для бокового меню -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal-overlay auth-modal" id="authModal" style="display: none;">
+        <div class="auth-modal-content">
+            <button class="close-auth-modal" onclick="hideAuthModal()">×</button>
+            <div class="auth-header">
+                <h2>Добро пожаловать в ИИ Сонник</h2>
+                <p>Войдите или зарегистрируйтесь, чтобы начать толковать сны</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Вход</button>
+                <button class="auth-tab-btn" data-tab="register">Регистрация</button>
+            </div>
+
+            <div id="auth-login-form" class="auth-form active">
+                <div class="form-group">
+                    <input type="tel" id="auth-login-phone" placeholder="Номер телефона" required>
+                </div>
+                <button id="auth-login-btn" class="auth-btn">Войти</button>
+            </div>
+
+            <div id="auth-register-form" class="auth-form">
+                <div class="form-group">
+                    <input type="tel" id="auth-reg-phone" placeholder="Номер телефона" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="auth-reg-name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="auth-reg-email" placeholder="Email адрес">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="auth-reg-birthdate" placeholder="Дата рождения">
+                </div>
+                <button id="auth-register-btn" class="auth-btn">Создать аккаунт</button>
+            </div>
+
+            <div class="auth-footer">
+                <p>Продолжая, вы соглашаетесь с нашими условиями использования</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основное модальное окно -->
+    <div class="modal-overlay" id="modalOverlay" style="display: none;">
+        <div class="modal-content" id="modalContent">
+            <!-- Контент модального окна -->
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

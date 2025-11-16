@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель - ИИ Сонник</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+    <!-- Убираем анимированный фон для админки -->
+    
+    <div class="container">
+        <main class="main-content admin-main-content">
+            <!-- Хедер с кнопкой возврата -->
+            <div class="header">
+                <button class="menu-toggle" onclick="goToMainApp()">← Назад</button>
+            </div>
+            
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1 class="admin-title">⚙️ Админ панель</h1>
+                    <div class="admin-actions">
+                        <button class="admin-btn" onclick="refreshAdminData()">🔄 Обновить</button>
+                        <button class="admin-btn logout-btn" onclick="logout()">🚪 Выйти</button>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="admin-stats" id="adminStats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalUsers">0</div>
+                        <div class="stat-label">Всего пользователей</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalPremium">0</div>
+                        <div class="stat-label">Премиум</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalBanned">0</div>
+                        <div class="stat-label">Заблокированных</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalChats">0</div>
+                        <div class="stat-label">Всего чатов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalMessages">0</div>
+                        <div class="stat-label">Сообщений</div>
+                    </div>
+                </div>
+
+                <!-- Список пользователей -->
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>👥 Управление пользователями</h2>
+                        <div class="section-actions">
+                            <input type="text" id="userSearch" placeholder="Поиск по имени, телефону..." class="search-input">
+                        </div>
+                    </div>
+                    
+                    <div class="users-table-container">
+                        <table class="users-table" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th class="user-id">#</th>
+                                    <th class="user-phone">Телефон</th>
+                                    <th class="user-name">Имя</th>
+                                    <th class="user-email">Email</th>
+                                    <th class="user-date">Регистрация</th>
+                                    <th class="user-chats">Чаты</th>
+                                    <th class="user-messages">Сообщения</th>
+                                    <th class="user-status">Статус</th>
+                                    <th class="user-actions">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Данные будут загружены динамически -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="table-loading" id="usersLoading">
+                        <div class="loading-spinner"></div>
+                        <span>Загрузка пользователей...</span>
+                    </div>
+
+                    <!-- Пагинация -->
+                    <div class="pagination" id="paginationContainer"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Уведомления -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
