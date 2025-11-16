@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const GIGACHAT_CONFIG = {
-    apiKey: 'MDE5YTgxOTMtYmI0NC03ZDIxLTkxYzUtY2I1ZjFjOWViZGZkOmIwMTBhNjYwLTJhZTYtNDEzNS1hYzYwLTJlYTc1ZDU4MzFiZg==',
+    apiKey: '',
     scope: 'GIGACHAT_API_PERS'
 };
 
@@ -1670,4 +1670,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`\n🎯 DREAM INTERPRETER SERVER running on http://localhost:${PORT}`);
+
 });
