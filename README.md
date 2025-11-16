@@ -12,6 +12,14 @@
 
 ```cmd
 cd путь_к_проекту
-npm install
+npm install 
+```
+### 2. Редактирование ключей
+В файле fixed-server.js заменить API GigaChata на свой в 12 строке
 
- ###
+### З. Запуск
+
+```cmd
+cd путь_к_папке_backend
+node fixed-server.js
+```
